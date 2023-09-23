@@ -1,12 +1,12 @@
 const sequelize = require('../config/connection');
 
 const usersSeed = require('./userData');
-const reviewsSeed = require('./reviewData');
+const postSeed = require('./postData');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
   await usersSeed();
-  await reviewsSeed();
+  await postSeed();
 
   process.exit(0);
 };
