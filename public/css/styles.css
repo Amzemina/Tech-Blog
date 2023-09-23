@@ -1,0 +1,51 @@
+html {
+    font-family: sans-serif;
+}
+
+nav {
+    
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    padding: 10px;
+    gap: 20px;
+}
+
+.card {
+    border: 2px solid rgb(37, 28, 63);
+    border-radius: 8px;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 5px;
+    align-items: center;
+    background-color: rgb(37, 28, 63);
+    color: white;
+    padding: 10px;
+}
+
+.card-title {
+margin-right: auto;
+font-size: 1.25rem;
+font-weight: bolder;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+@media screen and (max-width: 599px) {
+    .card-header{
+        flex-direction: column;
+    }
+    .card-title {
+        margin-right: 0%;
+    }
+}

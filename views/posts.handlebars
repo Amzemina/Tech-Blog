@@ -1,8 +1,14 @@
-{{#each posts}}
-<div>
-  <p class="mb-2 ml-5">Username: {{dataValues.user.dataValues.username}}</p>
-  <p class="mb-2 ml-5">Date: {{format_date dataValues.date}}</p>
-  <p class="mb-2 ml-5">Title: {{dataValues.title}}</p>
-  <p class="mb-2 ml-5">Review: {{dataValues.content}}</p>
+<div class="card-container">
+    {{#each posts}}
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title">{{dataValues.title}}</span>
+            <span>Posted by: {{dataValues.user.dataValues.username}}</span>
+            <span>on {{format_date dataValues.date}}</span>
+        </div>
+        <div class="card-body">
+        <p>Post: {{dataValues.content}}</p>
+        </div>
+    </div>
+    {{/each}}
 </div>
-{{/each}}

@@ -55,10 +55,6 @@ app.set('view engine', 'handlebars');
 const routes = require('./controllers/index.js');
 app.use(routes);
 
-
-
-
-
 // Sync Sequelize models and start the server
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Server listening on: http://localhost:' + PORT));
