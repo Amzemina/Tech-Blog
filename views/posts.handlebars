@@ -1,0 +1,8 @@
+{{#each posts}}
+<div>
+  <p class="mb-2 ml-5">Username: {{dataValues.user.dataValues.username}}</p>
+  <p class="mb-2 ml-5">Date: {{format_date dataValues.date}}</p>
+  <p class="mb-2 ml-5">Title: {{dataValues.title}}</p>
+  <p class="mb-2 ml-5">Review: {{dataValues.content}}</p>
+</div>
+{{/each}}

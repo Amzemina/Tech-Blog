@@ -52,8 +52,8 @@ app.engine('handlebars', exphbs.engine);
 app.set('view engine', 'handlebars');
 
 // Import and use the route files
-// const routes = require('./controllers/index.js');
-// app.use(routes);
+const routes = require('./controllers/index.js');
+app.use(routes);
 
 
 // Define the route for the root path ('/')
