@@ -56,12 +56,7 @@ const routes = require('./controllers/index.js');
 app.use(routes);
 
 
-// Define the route for the root path ('/')
-app.get('/', (req, res) => {
-  res.render('homepage', {
-    logged_in: req.session.logged_in
-  }); 
-});
+
 
 
 // Sync Sequelize models and start the server

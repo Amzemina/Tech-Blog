@@ -3,31 +3,8 @@ const router = express.Router();
 const { Post, User } = require('../../models');
 const withAuth = require('../../utils/auth')
 
-//Api Artist search
-router.get('/posts', async (req, res) => {
-  try {
-    const postData = await Post.findAll({
-        include: [{
-          model: User,
-          attributes: ["username"],
-        }]
-    })
-    console.log(postData);
-    return res.json(postData);
-  } catch (error) {
-    return res.status(500).json(error);
-  }
-});
-// router.get('/posts', async (req, res) => {
-//     try {
-//       const postData = await Post.findAll()
-//       return res.render('posts', {  posts: postData });
-//     } catch (error) {
-//       return res.status(500).render('homepage', { message: 'Error occured while fetching data.', logged_in: req.session.logged_in });
-//     }
-//   });
 
-//Create New review
+//Create New post
 router.post('/create', withAuth, async (req, res) => {
   try {
     if (!req.body.title || !req.body.content) {
