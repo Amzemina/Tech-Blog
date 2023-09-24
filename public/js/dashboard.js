@@ -24,18 +24,60 @@ const createPostHandler = async (event) => {
     event.target.classList.add('hidden')
   };
   
-  const editPostHandler = async (event) => {
+  const showEditPostHandler = async (event) => {
     const card = event.target.closest('.card');
     const dataId = card.getAttribute('data-id');
     
-    document.querySelector(`#user-post-title-${dataId}`).contentEditable = true;
-    document.querySelector(`#user-post-content-${dataId}`).contentEditable = true;
+    const titleEl = document.querySelector(`#user-post-title-${dataId}`)
+    titleEl.contentEditable = true;
+    titleEl.classList.add('editing');
+    const contentEl = document.querySelector(`#user-post-content-${dataId}`)
+    contentEl.contentEditable = true;
+    contentEl.classList.add('editing');
+
+    const footerEl = document.querySelector(`#user-post-footer-${dataId}`);
+    footerEl.classList.remove('hidden');
   };
 
+  const saveEditPostHandler = async (event) => {
+    event.preventDefault();
+    const dataId = event.target.getAttribute('data-id');
+    const title = document.getElementById(`user-post-title-${dataId}`).textContent.trim();
+    const content = document.getElementById(`user-post-content-${dataId}`).textContent.trim();
+
+    console.log(dataId)
+
+    console.log(title)
+    console.log(content)
+    const response = await fetch(`/api/posts/update/${dataId}`, {
+      method: 'PUT',
+      body: JSON.stringify({title, content }),
+      headers: { 'Content-Type': 'application/json' },
+    });
+  
+    if (response.ok) {
+      location.reload();
+    } else {
+        const json = await response.json();
+        showErrorMessage(json.message)
+    }
+  }
+
+  // Add event listener for clicking on posts to edit
   const editableCards = document.querySelectorAll('.editable');
 
   editableCards.forEach(editableCard => {
-    editableCard.addEventListener('click', editPostHandler);
+    editableCard.addEventListener('click', showEditPostHandler);
   })
+
+  // Add event listener for saving post edits
+  const updateButtons = document.querySelectorAll('.user-post-save');
+
+  updateButtons.forEach(updateButton => {
+    updateButton.addEventListener('click', saveEditPostHandler);
+  })
+
+  // Event listener to reveal new post form
   document.querySelector('#create-post').addEventListener('click', createPostHandler);
+  // Event listener for saving new post
   document.querySelector('#add-post').addEventListener('click', addPostHandler);

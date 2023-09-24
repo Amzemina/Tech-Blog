@@ -22,14 +22,13 @@ router.post('/create', withAuth, async (req, res) => {
 });
 
 //Update post
-router.put('/update', withAuth, async (req, res) => {
+router.put('/update/:id', withAuth, async (req, res) => {
   try {
-    if (!req.body.id || !req.body.title || !req.body.content) {
+    if (!req.body.title || !req.body.content) {
       return res.status(400).json({message: "Missing required field in request"})
     }
-    const updatePost = await Post.findByPk({
+    const updatePost = await Post.findByPk(req.params.id, {
         where: {
-          id: req.params.id,
           user_id: req.session.user_id,
         },
       });
@@ -43,6 +42,7 @@ router.put('/update', withAuth, async (req, res) => {
       return res.status(200).send()
     }
   } catch (error) {
+    console.error(error);
     return res.status(500).json(error)
   }
 })
