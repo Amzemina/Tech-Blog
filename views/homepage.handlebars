@@ -1,14 +1,34 @@
 <div class="card-container">
     {{#each posts}}
-    <div class="card">
-        <div class="card-header">
+    <div class="card" data-id="{{dataValues.id}}">
+        <div class="card-header expandable">
             <span class="card-title">{{dataValues.title}}</span>
-            <span>Posted by: {{dataValues.user.dataValues.username}}</span>
-            <span>on {{format_date dataValues.date}}</span>
+            <span class="author hidden-light" id="post-card-author-{{dataValues.id}}">Posted by:
+                {{dataValues.user.dataValues.username}}</span>
+            <span>Posted on {{format_date dataValues.date}}</span>
         </div>
-        <div class="card-body">
-        <p>{{dataValues.content}}</p>
+        <div class="card-body hidden-light" id="post-card-body-{{dataValues.id}}">
+            <p>{{dataValues.content}}</p>
+            <div class="post-comment-container" id="post-comment-container-{{dataValues.id}}">
+                
+                {{#each dataValues.comments as |comment|}}
+                    <div class="post-comment">
+                        <div class="post-comment-header">
+                            <span>{{comment.dataValues.user.dataValues.username}}</span>
+                            <span>{{format_date comment.dataValues.date}}</span>
+                        </div>
+                        <div class="post-comment-body">
+                            {{comment.dataValues.content}}
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+            <div class="post-comment-form">
+                <textarea id="add-comment-content-{{dataValues.id}}" rows="4" maxlength="1000" placeholder="Leave a comment..."></textarea>
+                <button type="button" class="add-comment-button" data-id="{{dataValues.id}}">Add Comment</button>
+            </div>
         </div>
     </div>
     {{/each}}
 </div>
+<script src="/public/js/homepage.js"></script>

@@ -42,6 +42,29 @@ header {
     padding: 15px;
 }
 
+.post-comment-form {
+    margin: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.post-comment-form > textarea {
+    flex-grow: 1;
+}
+
+@media screen and (max-width: 599px) {
+    .post-comment-form {
+        flex-direction: column;
+        gap: 5px
+    }
+
+    .post-comment-form > textarea {
+        align-self: stretch;
+    }
+}
+
 .login-container {
     display: flex;
     flex-direction: column;
@@ -86,6 +109,28 @@ header {
     padding: 10px;
 }
 
+.post-comment-container > .post-comment:nth-child(odd) {
+    background-color: #ddd;
+}
+
+.post-comment {
+    padding: 10px;
+}
+
+.post-comment-header {
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-comment-body {
+    font-size: 0.8rem;
+    padding: 10px 0px;
+}
+
 .card-footer {
     padding: 5px;
 }
@@ -100,6 +145,16 @@ button {
     display: none;
 }
 
+.hidden-light {
+    visibility: hidden;
+    position: absolute;
+    left: -9999999;
+}
+
+.hidden-light * {
+    visibility: hidden;
+}
+
 #message {
     color: crimson;
     text-align: center;
@@ -111,6 +166,10 @@ button {
 
 .editing {
     border: 3px dashed rgb(0, 81, 255);
+}
+
+.expandable {
+    cursor: pointer;
 }
 
 @media screen and (max-width: 599px) {

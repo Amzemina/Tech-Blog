@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { Post, User } = require('../../models');
+const { Post, Comment } = require('../../models');
 const withAuth = require('../../utils/auth')
 
 
@@ -62,6 +62,24 @@ router.delete('/delete/:id', withAuth, async (req, res) => {
     return res.status(200).json(postId);
   } catch (err) {
     return res.status(500).json(err);
+  }
+});
+
+// Comment on Post
+router.post('/comment/:id', withAuth, async (req, res) => {
+  try {
+    if (!req.body.content) {
+      return res.status(400).json({message: "Missing required field in request"})
+    }
+    await Comment.create({
+      content: req.body.content,
+      user_id: req.session.user_id,
+      post_id: req.params.id
+    });
+    return res.status(200).send()
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json(error)
   }
 });
 
