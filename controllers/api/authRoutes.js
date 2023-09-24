@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 // Create account
 router.post('/register', async (req, res) => {
     try {
+        
         const newUser = await User.create({
             username: req.body.username,
             password: req.body.password,
@@ -23,12 +24,20 @@ router.post('/register', async (req, res) => {
         })
         });
 
-        // return res.render('homepage', {
-        //   logged_in: req.session.logged_in
-        // });
-
     } catch (error) {
-        return res.render('homepage', { error });
+        if (typeof error === 'object' && error.hasOwnProperty('message')) {
+            if (typeof error.message === 'string') {
+                return res.status(404).json({ message: error.message })
+            } else if (typeof error.message === 'object' && error.message.hasOwnProperty('errors')) {
+                const errsArr = [];
+                error.message.errors.forEach(error => {
+                    errsArr.push(error.message)
+                })
+                return res.status(404).json({ message: errsArr.split(',')});
+            }
+            return res.status(404).json({ message: JSON.stringify(error.message)}); 
+        }
+        return res.status(400).json({ message: error });
     }
 });
 

@@ -24,8 +24,15 @@
                 {{/each}}
             </div>
             <div class="post-comment-form">
+                {{#if ../logged_in}}
                 <textarea id="add-comment-content-{{dataValues.id}}" rows="4" maxlength="1000" placeholder="Leave a comment..."></textarea>
                 <button type="button" class="add-comment-button" data-id="{{dataValues.id}}">Add Comment</button>
+                {{/if}}
+                {{#unless ../logged_in}}
+                <div class="post-comment-message">
+                <p>Log in to leave a comment</p>
+                </div>
+                {{/unless}}
             </div>
         </div>
     </div>

@@ -10,11 +10,15 @@ const saveNewPostHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
   
-    if (response.ok) {
-      location.reload();
+    if (response.redirected) {
+      document.location.replace('/login');
     } else {
+      if (response.ok) {
+        location.reload();
+      } else {
         const json = await response.json();
-        showErrorMessage(json.message)
+        showErrorMessage(json.message);
+      }
     }
   };
 
@@ -56,11 +60,15 @@ const saveNewPostHandler = async (event) => {
         headers: { 'Content-Type': 'application/json' },
     });
     
-    if (response.ok) {
-        location.reload();
+    if (response.redirected) {
+      document.location.replace('/login');
     } else {
+      if (response.ok) {
+        location.reload();
+      } else {
         const json = await response.json();
-        showErrorMessage(json.message)
+        showErrorMessage(json.message);
+      }
     }
   }
   
@@ -82,11 +90,15 @@ const saveNewPostHandler = async (event) => {
       headers: { 'Content-Type': 'application/json' },
     });
   
-    if (response.ok) {
-      location.reload();
+    if (response.redirected) {
+      document.location.replace('/login');
     } else {
+      if (response.ok) {
+        location.reload();
+      } else {
         const json = await response.json();
-        showErrorMessage(json.message)
+        showErrorMessage(json.message);
+      }
     }
   }
 

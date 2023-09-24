@@ -54,6 +54,11 @@ header {
     flex-grow: 1;
 }
 
+.post-comment-message {
+    flex-grow: 1;
+    text-align: center;
+}
+
 @media screen and (max-width: 599px) {
     .post-comment-form {
         flex-direction: column;

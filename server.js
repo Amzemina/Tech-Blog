@@ -24,7 +24,7 @@ const sess = {
     db: sequelize
   }),
   cookie: {
-    maxAge: 900000,
+    maxAge: 20000,
     httpOnly: true,
     secure: false,
     sameSite: 'strict',
