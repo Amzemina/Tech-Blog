@@ -7,17 +7,20 @@ const bcrypt = require('bcrypt');
 // Create account
 router.post('/register', async (req, res) => {
     try {
-        await User.create({
+        const newUser = await User.create({
             username: req.body.username,
             password: req.body.password,
         });
 
-        req.session.save(() => {
-            if (err) return next(err);
+        req.session.regenerate((err) => {
+            if (err) next(err)
             req.session.user_id = newUser.id;
             req.session.logged_in = true;
 
+            req.session.save((err) => {
+                if (err) return next(err);
             res.redirect('/')
+        })
         });
 
         // return res.render('homepage', {
@@ -33,7 +36,7 @@ router.post('/register', async (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         if (!req.body.username || !req.body.password) {
-            return res.status(400).send('You need to provide a username and password');
+            return res.status(400).json({ message: 'You need to provide a username and password' });
         }
         const user = await User.findOne({ where: { username: req.body.username } });
         if (user && bcrypt.compareSync(req.body.password, user.password)) {

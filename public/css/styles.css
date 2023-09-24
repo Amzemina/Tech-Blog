@@ -85,6 +85,13 @@ button {
     margin: 0px 20px 0px 20px;
 }
 
+.hidden {
+    display: none;
+}
+
+#message {
+    color: crimson;
+}
 
 
 @media screen and (max-width: 599px) {
