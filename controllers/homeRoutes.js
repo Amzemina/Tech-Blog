@@ -18,7 +18,8 @@ router.get('/', async (req, res) => {
     });
     res.render('homepage', {
         posts: postData,
-        logged_in: req.session.logged_in
+        logged_in: req.session.logged_in,
+        user_id: req.session.user_id
     });
 });
 

@@ -1,4 +1,4 @@
-
+//Show Blog content
 const expandPostHandler = async (event) => {
   const card = event.target.closest('.card');
   const dataId = card.getAttribute('data-id');
@@ -10,6 +10,7 @@ const expandPostHandler = async (event) => {
   author.classList.toggle('hidden-light');
 };
 
+//Add comment
 const addCommentHandler = async (event) => {
   event.preventDefault();
   const dataId = event.target.getAttribute('data-id');
@@ -30,6 +31,33 @@ const addCommentHandler = async (event) => {
     }
   }
 }
+
+//Delete comment 
+const deleteCommentHandler = async (event) => {
+  event.preventDefault();
+    const dataId = event.target.getAttribute('data-id');
+    const response = await fetch(`/api/posts/comment/${dataId}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    });
+  
+    if (response.redirected) {
+      document.location.replace('/login');
+    } else {
+      if (response.ok) {
+        location.reload();
+      } else {
+        const json = await response.json();
+        showErrorMessage(json.message);
+      }
+    }
+}
+
+// Add event listener for deleting comments
+const deleteCommentButtons = document.querySelectorAll('.delete-comment-button');
+deleteCommentButtons.forEach(deleteCommentButton => {
+  deleteCommentButton.addEventListener('click', deleteCommentHandler);
+})
 
 // Add event listener for clicking on posts to edit
 const expandableCards = document.querySelectorAll('.expandable');

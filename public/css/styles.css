@@ -134,6 +134,14 @@ header {
 .post-comment-body {
     font-size: 0.8rem;
     padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+.post-comment-body > p {
+    flex-grow: 1;
+    margin-right: auto;
 }
 
 .card-footer {

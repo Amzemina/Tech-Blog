@@ -10,27 +10,34 @@
         <div class="card-body hidden-light" id="post-card-body-{{dataValues.id}}">
             <p>{{dataValues.content}}</p>
             <div class="post-comment-container" id="post-comment-container-{{dataValues.id}}">
-                
+
                 {{#each dataValues.comments as |comment|}}
-                    <div class="post-comment">
-                        <div class="post-comment-header">
-                            <span>{{comment.dataValues.user.dataValues.username}}</span>
-                            <span>{{format_date comment.dataValues.date}}</span>
-                        </div>
-                        <div class="post-comment-body">
-                            {{comment.dataValues.content}}
-                        </div>
+                <div class="post-comment">
+                    <div class="post-comment-header">
+                        <span>{{comment.dataValues.user.dataValues.username}}</span>
+                        <span>{{format_date comment.dataValues.date}}</span>
                     </div>
+                    <div class="post-comment-body">
+                        <p>{{comment.dataValues.content}}</p>
+
+                        {{#if_equal ../../user_id comment.dataValues.user_id}}
+                        <button type="button" class="delete-comment-button" id="delete-comment-button-{{dataValues.id}}"
+                            data-id="{{comment.dataValues.id}}">Delete</button>
+                        {{/if_equal}}
+                    </div>
+                </div>
+
                 {{/each}}
             </div>
             <div class="post-comment-form">
                 {{#if ../logged_in}}
-                <textarea id="add-comment-content-{{dataValues.id}}" rows="4" maxlength="1000" placeholder="Leave a comment..."></textarea>
+                <textarea id="add-comment-content-{{dataValues.id}}" rows="4" maxlength="1000"
+                    placeholder="Leave a comment..."></textarea>
                 <button type="button" class="add-comment-button" data-id="{{dataValues.id}}">Add Comment</button>
                 {{/if}}
                 {{#unless ../logged_in}}
                 <div class="post-comment-message">
-                <p>Log in to leave a comment</p>
+                    <p>Log in to leave a comment</p>
                 </div>
                 {{/unless}}
             </div>
