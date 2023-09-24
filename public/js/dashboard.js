@@ -44,11 +44,6 @@ const createPostHandler = async (event) => {
     const dataId = event.target.getAttribute('data-id');
     const title = document.getElementById(`user-post-title-${dataId}`).textContent.trim();
     const content = document.getElementById(`user-post-content-${dataId}`).textContent.trim();
-
-    console.log(dataId)
-
-    console.log(title)
-    console.log(content)
     const response = await fetch(`/api/posts/update/${dataId}`, {
       method: 'PUT',
       body: JSON.stringify({title, content }),
@@ -79,6 +74,22 @@ const createPostHandler = async (event) => {
     console.log('cancelling',dataId)
   };
 
+  const deletePostHandler = async (event) => {
+    event.preventDefault();
+    const dataId = event.target.getAttribute('data-id');
+    const response = await fetch(`/api/posts/delete/${dataId}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    });
+  
+    if (response.ok) {
+      location.reload();
+    } else {
+        const json = await response.json();
+        showErrorMessage(json.message)
+    }
+  }
+
   // Add event listener for clicking on posts to edit
   const editableCards = document.querySelectorAll('.editable');
 
@@ -98,6 +109,13 @@ const createPostHandler = async (event) => {
 
   cancelButtons.forEach(cancelButton => {
     cancelButton.addEventListener('click', cancelEditPostHandler);
+  })
+
+  // Add event listener for deleting posts
+  const deleteButtons = document.querySelectorAll('.user-post-delete');
+
+  deleteButtons.forEach(deleteButton => {
+    deleteButton.addEventListener('click', deletePostHandler);
   })
 
   // Event listener to reveal new post form
