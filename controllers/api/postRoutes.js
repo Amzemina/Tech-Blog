@@ -8,7 +8,7 @@ const withAuth = require('../../utils/auth')
 router.post('/create', withAuth, async (req, res) => {
   try {
     if (!req.body.title || !req.body.content) {
-        return res.status(400).send("Missing required field in request")
+        return res.status(400).json({message: "Missing required field in request"})
       }
     const newPost = await Post.create({
       title: req.body.title,
@@ -25,7 +25,7 @@ router.post('/create', withAuth, async (req, res) => {
 router.put('/update', withAuth, async (req, res) => {
   try {
     if (!req.body.id || !req.body.title || !req.body.content) {
-      return res.status(400).send("Missing required field in request")
+      return res.status(400).json({message: "Missing required field in request"})
     }
     const updatePost = await Post.findByPk({
         where: {
@@ -34,7 +34,7 @@ router.put('/update', withAuth, async (req, res) => {
         },
       });
     if (!updatePost) {
-      return res.status(400).send("Invalid post id")
+      return res.status(400).json({message: "Invalid post id"})
     } else {
       updatePost.date = new Date()
       updatePost.title = req.body.title
@@ -43,7 +43,7 @@ router.put('/update', withAuth, async (req, res) => {
       return res.status(200).send()
     }
   } catch (error) {
-    return res.status(500).send(error)
+    return res.status(500).json(error)
   }
 })
 

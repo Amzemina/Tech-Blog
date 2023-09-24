@@ -14,7 +14,8 @@ const loginFormHandler =  async (event) => {
       if (response.ok) {
         document.location.replace('/dashboard');
       } else {
-        showErrorMessage(await response.json())
+        const json = await response.json();
+        showErrorMessage(json.message)
       }
     } else {
         showErrorMessage("You need to provide a Username and Password")
@@ -37,24 +38,14 @@ const loginFormHandler =  async (event) => {
       if (response.ok) {
         document.location.replace('/dashboard');
       } else {
-        showErrorMessage(await response.json())
+        const json = await response.json();
+        showErrorMessage(json.message)
       }
     } else {
         showErrorMessage("You need to provide a Username and Password")
     }
 
   };
-
-const errorMessage = document.querySelector('#message')
-function showErrorMessage (errorText) {
-        errorMessage.textContent = errorText
-        errorMessage.classList.remove('hidden')
-}
-
-function hideErrorMessage(){
-    errorMessage.textContent = ""
-    errorMessage.classList.add("hidden")
-}
 
   document.querySelector('#login-submit').addEventListener('click', loginFormHandler);
   document.querySelector('#signup-submit').addEventListener('click', signupFormHandler);

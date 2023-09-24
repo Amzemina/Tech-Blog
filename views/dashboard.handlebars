@@ -1,0 +1,25 @@
+<div class="blog-title">My Blogs</div>
+<div class="card-container">
+    {{#each posts}}
+    <div id="user-post-{{dataValues.id}}" class="card editable" data-id="{{dataValues.id}}">
+        <div class="card-header">
+            <span class="card-title" id="user-post-title-{{dataValues.id}}">{{dataValues.title}}</span>
+            <span>Posted by: {{dataValues.user.dataValues.username}}</span>
+            <span>on {{format_date dataValues.date}}</span>
+        </div>
+        <div class="card-body" id="user-post-content-{{dataValues.id}}">
+        {{!-- <p>{{dataValues.content}}</p> --}}
+        {{dataValues.content}}
+        </div>
+    </div>
+    {{/each}}
+</div>
+<div class="blog-title">New Blog</div>
+    <div id="add-post-form" class="hidden">
+        <input id="post-title" type="text" placeholder="Title of your Blog">
+        <textarea id="post-content" maxlength="1000" rows="4" placeholder="Your thoughts..."></textarea>
+        <button id="create-post" type="button">Create Blog</button>
+</div>
+<button id="add-post" type="button">New Blog Post</button>
+
+<script src="/public/js/dashboard.js"></script>

@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
           attributes: ["username"],
         }]
     })
-    res.render('posts',  {
+    res.render('homepage',  {
       posts: postData,
       logged_in: req.session.logged_in
     }); 
@@ -27,7 +27,17 @@ router.get('/login', async (req,res) => {
 
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
+        const postData = await Post.findAll({
+            where: {
+                user_id: req.session.user_id
+            },
+            include: [{
+              model: User,
+              attributes: ["username"],
+            }]
+        })
         res.render('dashboard', { 
+        posts: postData,
         logged_in: req.session.logged_in
     })
     } catch (error) {
