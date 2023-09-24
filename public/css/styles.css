@@ -35,6 +35,15 @@ nav {
     padding: 15px;
 }
 
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 15px 30% ;
+
+}
+
 .card-container {
     display: flex;
     flex-direction: column;
@@ -75,6 +84,8 @@ button {
     border-radius: 6px;
     margin: 0px 20px 0px 20px;
 }
+
+
 
 @media screen and (max-width: 599px) {
     .card-header {
