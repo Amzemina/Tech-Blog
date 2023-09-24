@@ -25,18 +25,23 @@ const createPostHandler = async (event) => {
   };
   
   const showEditPostHandler = async (event) => {
-    const card = event.target.closest('.card');
-    const dataId = card.getAttribute('data-id');
-    
-    const titleEl = document.querySelector(`#user-post-title-${dataId}`)
-    titleEl.contentEditable = true;
-    titleEl.classList.add('editing');
-    const contentEl = document.querySelector(`#user-post-content-${dataId}`)
-    contentEl.contentEditable = true;
-    contentEl.classList.add('editing');
 
-    const footerEl = document.querySelector(`#user-post-footer-${dataId}`);
-    footerEl.classList.remove('hidden');
+    if (isAlreadyEditing) {
+        showErrorMessage('You can only edit one post at a time');
+    } else {
+        isAlreadyEditing = true;
+        const card = event.target.closest('.card');
+        const dataId = card.getAttribute('data-id');
+        
+        const titleEl = document.querySelector(`#user-post-title-${dataId}`)
+        titleEl.contentEditable = true;
+        card.classList.add('editing');
+        const contentEl = document.querySelector(`#user-post-content-${dataId}`)
+        contentEl.contentEditable = true;
+
+        const footerEl = document.querySelector(`#user-post-footer-${dataId}`);
+        footerEl.classList.remove('hidden');
+    }
   };
 
   const saveEditPostHandler = async (event) => {
@@ -45,13 +50,13 @@ const createPostHandler = async (event) => {
     const title = document.getElementById(`user-post-title-${dataId}`).textContent.trim();
     const content = document.getElementById(`user-post-content-${dataId}`).textContent.trim();
     const response = await fetch(`/api/posts/update/${dataId}`, {
-      method: 'PUT',
-      body: JSON.stringify({title, content }),
-      headers: { 'Content-Type': 'application/json' },
+        method: 'PUT',
+        body: JSON.stringify({title, content }),
+        headers: { 'Content-Type': 'application/json' },
     });
-  
+    
     if (response.ok) {
-      location.reload();
+        location.reload();
     } else {
         const json = await response.json();
         showErrorMessage(json.message)
@@ -60,18 +65,7 @@ const createPostHandler = async (event) => {
   
   const cancelEditPostHandler = async (event) => {
     event.stopPropagation();
-    const dataId = event.target.getAttribute('data-id');
-    
-    const titleEl = document.querySelector(`#user-post-title-${dataId}`)
-    titleEl.contentEditable = false;
-    titleEl.classList.remove('editing');
-    const contentEl = document.querySelector(`#user-post-content-${dataId}`)
-    contentEl.contentEditable = false;
-    contentEl.classList.remove('editing');
-
-    const footerEl = document.querySelector(`#user-post-footer-${dataId}`);
-    footerEl.classList.add('hidden');
-    console.log('cancelling',dataId)
+    document.location.reload();
   };
 
   const deletePostHandler = async (event) => {
@@ -89,6 +83,8 @@ const createPostHandler = async (event) => {
         showErrorMessage(json.message)
     }
   }
+
+  let isAlreadyEditing = false;
 
   // Add event listener for clicking on posts to edit
   const editableCards = document.querySelectorAll('.editable');
