@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Post, User } = require('../models');
+const withAuth = require('../utils/auth')
 
 router.get('/', async (req, res) => {
     const postData = await Post.findAll({
@@ -24,7 +25,7 @@ router.get('/login', async (req,res) => {
     }
 })
 
-router.get('/dashboard', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
         res.render('dashboard', { 
         logged_in: req.session.logged_in
