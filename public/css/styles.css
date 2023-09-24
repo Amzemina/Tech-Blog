@@ -116,7 +116,7 @@ button {
 }
 
 .editing {
-    border: 3px dashed red;
+    border: 3px dashed gold;
 }
 
 @media screen and (max-width: 599px) {

@@ -62,6 +62,22 @@ const createPostHandler = async (event) => {
         showErrorMessage(json.message)
     }
   }
+  
+  const cancelEditPostHandler = async (event) => {
+    event.stopPropagation();
+    const dataId = event.target.getAttribute('data-id');
+    
+    const titleEl = document.querySelector(`#user-post-title-${dataId}`)
+    titleEl.contentEditable = false;
+    titleEl.classList.remove('editing');
+    const contentEl = document.querySelector(`#user-post-content-${dataId}`)
+    contentEl.contentEditable = false;
+    contentEl.classList.remove('editing');
+
+    const footerEl = document.querySelector(`#user-post-footer-${dataId}`);
+    footerEl.classList.add('hidden');
+    console.log('cancelling',dataId)
+  };
 
   // Add event listener for clicking on posts to edit
   const editableCards = document.querySelectorAll('.editable');
@@ -75,6 +91,13 @@ const createPostHandler = async (event) => {
 
   updateButtons.forEach(updateButton => {
     updateButton.addEventListener('click', saveEditPostHandler);
+  })
+
+  // Add event listener for cancelling post edits
+  const cancelButtons = document.querySelectorAll('.user-post-cancel');
+
+  cancelButtons.forEach(cancelButton => {
+    cancelButton.addEventListener('click', cancelEditPostHandler);
   })
 
   // Event listener to reveal new post form
