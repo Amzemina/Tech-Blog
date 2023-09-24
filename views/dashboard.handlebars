@@ -8,23 +8,46 @@
             <span>on {{format_date dataValues.date}}</span>
         </div>
         <div class="card-body" id="user-post-content-{{dataValues.id}}">
-        {{dataValues.content}}
+            {{dataValues.content}}
         </div>
         <div class="card-footer hidden" id="user-post-footer-{{dataValues.id}}" id="user-post-footer-{{dataValues.id}}">
-            <button type="button" class="user-post-save" id="user-post-save-{{dataValues.id}}" data-id="{{dataValues.id}}">Update</button>
-            <button type="button" class="user-post-cancel" id="user-post-cancel-{{dataValues.id}}" data-id="{{dataValues.id}}">Cancel</button>
-            <button type="button" class="user-post-delete" id="user-post-delete-{{dataValues.id}}" data-id="{{dataValues.id}}">Delete</button>
+            <div class="button-bar">
+                <button type="button" class="user-post-save" id="user-post-save-{{dataValues.id}}"
+                    data-id="{{dataValues.id}}">Update</button>
+                <button type="button" class="user-post-cancel" id="user-post-cancel-{{dataValues.id}}"
+                    data-id="{{dataValues.id}}">Cancel</button>
+                <button type="button" class="user-post-delete" id="user-post-delete-{{dataValues.id}}"
+                    data-id="{{dataValues.id}}">Delete</button>
+            </div>
         </div>
     </div>
-    
+
     {{/each}}
 </div>
 <div class="blog-title">New Blog</div>
-    <div id="add-post-form" class="hidden">
-        <input id="post-title" type="text" placeholder="Title of your Blog">
-        <textarea id="post-content" maxlength="1000" rows="4" placeholder="Your thoughts..."></textarea>
-        <button id="create-post" type="button">Create Blog</button>
+<div id="add-post-form" class="card-container hidden">
+    <div class="card">
+    <div class="card-header">
+        <div class="card-title">New Blog Post</div>
+    </div>
+    <div class="card-body">
+        <div>
+            <label for="post-title">Post Title</label>
+            <input id="post-title" style="width: 100%" type="text" placeholder="Title of your Blog">
+        </div>
+        <div>
+            <label for="post-content">Post Content</label>
+            <textarea id="post-content" style="width: 100%" maxlength="1000" rows="4" placeholder="Your thoughts..."></textarea>
+        </div>
+        <div class="button-bar">
+            <button id="new-post-save" type="button">Create</button>
+            <button id="new-post-cancel" type="button">Cancel</button>
+        </div>
+    </div>
+    </div>
 </div>
-<button id="add-post" type="button">New Blog Post</button>
+<div id="add-post" class="button-bar">
+    <button type="button">Add New Blog Post</button>
+</div>
 
 <script src="/public/js/dashboard.js"></script>

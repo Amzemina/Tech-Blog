@@ -1,4 +1,4 @@
-const createPostHandler = async (event) => {
+const saveNewPostHandler = async (event) => {
     event.preventDefault();
 
     const title = document.querySelector('#post-title').value.trim();
@@ -68,6 +68,11 @@ const createPostHandler = async (event) => {
     event.stopPropagation();
     document.location.reload();
   };
+  
+  const cancelNewPostHandler = async (event) => {
+    event.stopPropagation();
+    document.location.reload();
+  };
 
   const deletePostHandler = async (event) => {
     event.preventDefault();
@@ -116,6 +121,8 @@ const createPostHandler = async (event) => {
   })
 
   // Event listener to reveal new post form
-  document.querySelector('#create-post').addEventListener('click', createPostHandler);
+  document.querySelector('#new-post-save').addEventListener('click', saveNewPostHandler);
+  // Event listener to reveal new post form
+  document.querySelector('#new-post-cancel').addEventListener('click', cancelNewPostHandler);
   // Event listener for saving new post
   document.querySelector('#add-post').addEventListener('click', addPostHandler);
