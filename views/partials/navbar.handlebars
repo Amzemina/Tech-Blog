@@ -1,0 +1,15 @@
+<div id="nav-container">
+   <nav>
+      <button id="home-button" type="button">Home</button>
+      <button id="dashboard-button" type="button">Dashboard</button>
+   {{#if logged_in}}
+    <button id="logout-button" type="button">logout</button>
+    {{/if}}
+    {{#unless logged_in}}
+    <button id="login-button" type="button">login</button>
+    {{/unless}}
+    
+   </nav>
+  </div>
+
+  <script src="/public/js/navbar.js"></script>

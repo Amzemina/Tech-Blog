@@ -12,24 +12,25 @@ body {
     border-radius: 10px;
     padding: 5px;
     background-color: white;
-    color:rgb(71, 57, 117);
+    color: rgb(71, 57, 117);
     font-family: monospace;
 }
 
-.logo > * {
+.logo>* {
     margin-block-start: 0%;
     margin-block-end: 0%;
 }
 
 header {
-background-color: rgb(37, 28, 63);
-padding: 15px;
+    background-color: rgb(37, 28, 63);
+    padding: 15px;
 }
 
 nav {
     display: flex;
     flex-direction: row;
-    gap: 10px;
+    justify-content: center;
+    gap: 10 px;
     align-items: center;
     padding: 15px;
 }
@@ -60,19 +61,26 @@ nav {
 }
 
 .card-title {
-margin-right: auto;
-font-size: 1.25rem;
-font-weight: bolder;
+    margin-right: auto;
+    font-size: 1.25rem;
+    font-weight: bolder;
 }
 
 .card-body {
     padding: 10px;
 }
 
+button {
+    display: inline-block;
+    border-radius: 6px;
+    margin: 0px 20px 0px 20px;
+}
+
 @media screen and (max-width: 599px) {
-    .card-header{
+    .card-header {
         flex-direction: column;
     }
+
     .card-title {
         margin-right: 0%;
     }

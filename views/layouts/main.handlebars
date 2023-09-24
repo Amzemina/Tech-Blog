@@ -11,20 +11,15 @@
 
 <body>
   <header>
+    
    <div class="logo">
    <h1>The Tech Blog</h1>
    </div>
-   <nav>
-    <button type="button">Home</button>
-    <button type="button">Dashboard</button>
-    <button type="button">login</button>
-    <button type="button">logout</button>
-   </nav>
+   {{>navbar}}
   </header>
-
-  <main>
+  
     {{{body}}}
-  </main>
+  
 </body>
 <script src="/public/js/index.js"></script>
 </html>
