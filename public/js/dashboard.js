@@ -25,13 +25,14 @@ const createPostHandler = async (event) => {
   };
   
   const showEditPostHandler = async (event) => {
-
-    if (isAlreadyEditing) {
+    const card = event.target.closest('.card');
+    const dataId = card.getAttribute('data-id');
+    if (isAlreadyEditing > -1 && isAlreadyEditing !== dataId) {
         showErrorMessage('You can only edit one post at a time');
+    } else if (isAlreadyEditing > -1 && isAlreadyEditing === dataId) {
+        return;
     } else {
-        isAlreadyEditing = true;
-        const card = event.target.closest('.card');
-        const dataId = card.getAttribute('data-id');
+        isAlreadyEditing = dataId;
         
         const titleEl = document.querySelector(`#user-post-title-${dataId}`)
         titleEl.contentEditable = true;
@@ -84,7 +85,7 @@ const createPostHandler = async (event) => {
     }
   }
 
-  let isAlreadyEditing = false;
+  let isAlreadyEditing = -1;
 
   // Add event listener for clicking on posts to edit
   const editableCards = document.querySelectorAll('.editable');
