@@ -12,7 +12,7 @@ const saveNewPostHandler = async (event) => {
     });
   
     if (response.redirected) {
-      document.location.replace('/login');
+      document.location.replace(response.url);
     } else {
       if (response.ok) {
         location.reload();
@@ -65,7 +65,7 @@ const saveNewPostHandler = async (event) => {
     });
     
     if (response.redirected) {
-      document.location.replace('/login');
+      document.location.replace(response.url);
     } else {
       if (response.ok) {
         location.reload();
