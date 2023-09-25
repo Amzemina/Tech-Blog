@@ -1,3 +1,4 @@
+//Save new user blog post
 const saveNewPostHandler = async (event) => {
     event.preventDefault();
 
@@ -22,12 +23,14 @@ const saveNewPostHandler = async (event) => {
     }
   };
 
+ //and new blog post form show and hide
   const addPostHandler = async (event) => {
     const formDiv = document.getElementById('add-post-form')
     formDiv.classList.remove('hidden')
     event.target.classList.add('hidden')
   };
   
+  //shows which post is being edited
   const showEditPostHandler = async (event) => {
     const card = event.target.closest('.card');
     const dataId = card.getAttribute('data-id');
@@ -49,6 +52,7 @@ const saveNewPostHandler = async (event) => {
     }
   };
 
+  //save update post
   const saveEditPostHandler = async (event) => {
     event.preventDefault();
     const dataId = event.target.getAttribute('data-id');
@@ -72,16 +76,19 @@ const saveNewPostHandler = async (event) => {
     }
   }
   
+  //cancel update post
   const cancelEditPostHandler = async (event) => {
     event.stopPropagation();
     document.location.reload();
   };
   
+  //cancel new user blog post
   const cancelNewPostHandler = async (event) => {
     event.stopPropagation();
     document.location.reload();
   };
 
+  //delete user blog post
   const deletePostHandler = async (event) => {
     event.preventDefault();
     const dataId = event.target.getAttribute('data-id');
@@ -102,30 +109,31 @@ const saveNewPostHandler = async (event) => {
     }
   }
 
+  //variable to only edit one post at a time
   let isAlreadyEditing = -1;
 
-  // Add event listener for clicking on posts to edit
+  // Event listener for clicking on posts to edit
   const editableCards = document.querySelectorAll('.editable');
 
   editableCards.forEach(editableCard => {
     editableCard.addEventListener('click', showEditPostHandler);
   })
 
-  // Add event listener for saving post edits
+  // Event listener for saving post edits
   const updateButtons = document.querySelectorAll('.user-post-save');
 
   updateButtons.forEach(updateButton => {
     updateButton.addEventListener('click', saveEditPostHandler);
   })
 
-  // Add event listener for cancelling post edits
+  // Event listener for cancelling post edits
   const cancelButtons = document.querySelectorAll('.user-post-cancel');
 
   cancelButtons.forEach(cancelButton => {
     cancelButton.addEventListener('click', cancelEditPostHandler);
   })
 
-  // Add event listener for deleting posts
+  // Event listener for deleting posts
   const deleteButtons = document.querySelectorAll('.user-post-delete');
 
   deleteButtons.forEach(deleteButton => {

@@ -1,3 +1,4 @@
+//logout button
 const logoutHandler = async (event) => {
     event.preventDefault();
     const response = await fetch('/api/users/logout', {
@@ -12,22 +13,25 @@ const logoutHandler = async (event) => {
     }
 };
 
+//login button
 const loginHandler = async (event) => {
     event.preventDefault();
     document.location.replace('/login');
 };
 
+//dashboard button
 const dashboardHandler = async (event) => {
     event.preventDefault();
     document.location.replace('/dashboard');
 };
 
+//home button
 const homeHandler = async (event) => {
     event.preventDefault();
     document.location.replace('/');
 };
 
-
+//navbar button clicks
 function addButtonClicks () {
     const logoutEl = document.querySelector('#logout-button');
     if (logoutEl) logoutEl.addEventListener('click', logoutHandler);

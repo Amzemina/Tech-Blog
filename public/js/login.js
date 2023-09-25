@@ -1,3 +1,4 @@
+//login
 const loginFormHandler =  async (event) => {
     event.preventDefault();
     hideErrorMessage()
@@ -22,6 +23,7 @@ const loginFormHandler =  async (event) => {
     }
   };
 
+  //register
   const signupFormHandler =  async (event) => {
     event.preventDefault();
     hideErrorMessage()

@@ -53,19 +53,19 @@ const deleteCommentHandler = async (event) => {
     }
 }
 
-// Add event listener for deleting comments
+// Event listener for deleting comments
 const deleteCommentButtons = document.querySelectorAll('.delete-comment-button');
 deleteCommentButtons.forEach(deleteCommentButton => {
   deleteCommentButton.addEventListener('click', deleteCommentHandler);
 })
 
-// Add event listener for clicking on posts to edit
+// Event listener for clicking on posts to edit
 const expandableCards = document.querySelectorAll('.expandable');
 expandableCards.forEach(expandableCard => {
   expandableCard.addEventListener('click', expandPostHandler);
 })
 
-// Add event listener for commenting on post
+// Event listener for commenting on post
 const addCommentButtons = document.querySelectorAll('.add-comment-button');
 addCommentButtons.forEach(addCommentButton => {
   addCommentButton.addEventListener('click', addCommentHandler);

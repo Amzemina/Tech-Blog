@@ -3,6 +3,7 @@ const router = express.Router();
 const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth')
 
+//home page
 router.get('/', async (req, res) => {
     const postData = await Post.findAll({
         include: [{
@@ -23,7 +24,7 @@ router.get('/', async (req, res) => {
     });
 });
 
-
+//login page
 router.get('/login', async (req, res) => {
     try {
         res.render('login')
@@ -32,6 +33,7 @@ router.get('/login', async (req, res) => {
     }
 })
 
+//dashboard page
 router.get('/dashboard', withAuth, async (req, res) => {
     try {
         const postData = await Post.findAll({

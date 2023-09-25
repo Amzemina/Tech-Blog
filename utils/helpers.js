@@ -1,3 +1,4 @@
+//date and if_equal helper
 module.exports = {
     format_time: (date) => {
       return date.toLocaleTimeString();

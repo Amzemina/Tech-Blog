@@ -59,6 +59,7 @@ header {
     text-align: center;
 }
 
+/* responsiveness for comments */
 @media screen and (max-width: 599px) {
     .post-comment-form {
         flex-direction: column;
@@ -185,6 +186,7 @@ button {
     cursor: pointer;
 }
 
+/* responsivness for content boxes */
 @media screen and (max-width: 599px) {
     .card-header {
         flex-direction: column;
