@@ -6,9 +6,6 @@ A CMS-style blog site, where developers can publish their blog posts when logged
 ## Table of Contents
   * [Installation](#installation)
   * [Usage](#usage)
-  * [Contributing](#contributing)
-  * [Tests](#tests)
-  * [License](#license)
   * [Questions](#questions)
 
 ## Installation
@@ -22,15 +19,6 @@ https://evening-thicket-31505-67daa0073311.herokuapp.com/
 [Untitled_ Sep 24 2023 8_38 PM.webm](https://github.com/Amzemina/Tech-Blog/assets/128834562/e5d13be0-d606-442c-93bd-44209d8e74f9)
 
 
-
-## Contributing
-N/A
-
-## Tests
-N/A
-
-## License 
-N/A
 
 ## Questions
 If you have any questions about this project, you can view it at https://github.com/amzemina.
